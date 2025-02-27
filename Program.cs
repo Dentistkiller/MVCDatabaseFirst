@@ -1,9 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+using MVCDatabaseFirst.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//Add DbContext
+builder.Services.AddDbContext<FakebookDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnString")));
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
